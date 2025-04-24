@@ -1,6 +1,7 @@
 package com.example.mtb.exception.handler;
 
 import com.example.mtb.exception.UserExistByEmailException;
+import com.example.mtb.exception.UserNotFoundByEmailException;
 import com.example.mtb.repository.UserRepository;
 import com.example.mtb.util.ErrorStructure;
 import com.example.mtb.util.RestResponseBuilder;
@@ -19,5 +20,10 @@ public class UserExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ErrorStructure> handleUserExistByEmailException(UserExistByEmailException ex){
         return responseBuilder.error(HttpStatus.OK, ex.getMessage());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorStructure> handleUserNotFoundByEmailException(UserNotFoundByEmailException ex){
+        return responseBuilder.error(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 }
